@@ -56,7 +56,7 @@ export function calculateADV(
       : field.hasWeather('Sand') ? 'Rock'
       : field.hasWeather('Hail') ? 'Ice'
       : 'Normal';
-    move.category = move.type === 'Rock' ? 'Physical' : 'Special';
+    move.category = 'Special';
     desc.weather = field.weather;
     desc.moveType = move.type;
     desc.moveBP = move.bp;
@@ -182,7 +182,30 @@ export function calculateADV(
     at *= 2;
     desc.attackerAbility = attacker.ability;
   }
-
+  if (field.attackerSide.isBadgeAtk) {
+	if (isPhysical){  
+    at = Math.floor(at * 1.1);
+    desc.isBadgeAtk = true;
+	}
+  }
+    if (field.attackerSide.isBadgeSpec) {
+	if (!isPhysical){  
+    at = Math.floor(at * 1.1);
+    desc.isBadgeSpec = true;
+	}
+  }  
+      if (field.defenderSide.isBadgeSpec)
+  {
+	  if(!isPhysical){
+	   df = Math.floor(df * 1.1);
+	  }
+  }
+    if (field.defenderSide.isBadgeDef)
+  {
+	  if(isPhysical){
+	   df = Math.floor(df * 1.1);
+	  }
+  }
   if (!attacker.hasItem('Sea Incense') && move.hasType(getItemBoostType(attacker.item))) {
     at = Math.floor(at * 1.1);
     desc.attackerItem = attacker.item;

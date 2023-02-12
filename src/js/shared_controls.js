@@ -893,7 +893,7 @@ function getMoveDetails(moveInfo, species, ability, item, useMax) {
 		basePower: +moveInfo.find(".move-bp").val(),
 		type: moveInfo.find(".move-type").val()
 	};
-	if (gen >= 4) overrides.category = moveInfo.find(".move-cat").val();
+	if (gen >= 3) overrides.category = moveInfo.find(".move-cat").val();
 	return new calc.Move(gen, moveName, {
 		ability: ability, item: item, useZ: isZMove, species: species, isCrit: isCrit, hits: hits,
 		timesUsed: timesUsed, timesUsedWithMetronome: timesUsedWithMetronome, overrides: overrides, useMax: useMax
@@ -931,6 +931,10 @@ function createField() {
 	var isSeeded = [$("#leechSeedL").prop("checked"), $("#leechSeedR").prop("checked")];
 	var isForesight = [$("#foresightL").prop("checked"), $("#foresightR").prop("checked")];
 	var isHelpingHand = [$("#helpingHandL").prop("checked"), $("#helpingHandR").prop("checked")];
+	var isBadgeAtk = [$("#AtkL").prop("checked"), $("#AtkR").prop("checked")];
+	var isBadgeSpec = [$("#SpecL").prop("checked"), $("#SpecR").prop("checked")];
+	var isBadgeDef = [$("#DefL").prop("checked"), $("#DefR").prop("checked")];
+	var isBadgeSpeed = [$("#SpeL").prop("checked"), $("#SpeR").prop("checked")];
 	var isTailwind = [$("#tailwindL").prop("checked"), $("#tailwindR").prop("checked")];
 	var isFlowerGift = [$("#flowerGiftL").prop("checked"), $("#flowerGiftR").prop("checked")];
 	var isFriendGuard = [$("#friendGuardL").prop("checked"), $("#friendGuardR").prop("checked")];
@@ -946,7 +950,7 @@ function createField() {
 			vinelash: vinelash[i], wildfire: wildfire[i], cannonade: cannonade[i], volcalith: volcalith[i],
 			isReflect: isReflect[i], isLightScreen: isLightScreen[i],
 			isProtected: isProtected[i], isSeeded: isSeeded[i], isForesight: isForesight[i],
-			isTailwind: isTailwind[i], isHelpingHand: isHelpingHand[i], isFlowerGift: isFlowerGift[i], isFriendGuard: isFriendGuard[i],
+			isTailwind: isTailwind[i], isHelpingHand: isHelpingHand[i], isBadgeAtk: isBadgeAtk[i], isBadgeSpec: isBadgeSpec[i], isBadgeDef: isBadgeDef[i], isBadgeSpeed: isBadgeSpeed[i], isFlowerGift: isFlowerGift[i], isFriendGuard: isFriendGuard[i],
 			isAuroraVeil: isAuroraVeil[i], isBattery: isBattery[i], isPowerSpot: isPowerSpot[i], isSwitching: isSwitchingOut[i] ? 'out' : undefined
 		});
 	};
@@ -1134,6 +1138,8 @@ function clearField() {
 	$("#foresightR").prop("checked", false);
 	$("#helpingHandL").prop("checked", false);
 	$("#helpingHandR").prop("checked", false);
+	$("#AtlL").prop("checked", false);
+	$("#AtkR").prop("checked", false);
 	$("#tailwindL").prop("checked", false);
 	$("#tailwindR").prop("checked", false);
 	$("#friendGuardL").prop("checked", false);
@@ -1385,7 +1391,7 @@ function loadCustomList(id) {
 
 $(document).ready(function () {
 	var params = new URLSearchParams(window.location.search);
-	var g = GENERATION[params.get('gen')] || 9;
+	var g = GENERATION[params.get('gen')] || 3;
 	$("#gen" + g).prop("checked", true);
 	$("#gen" + g).change();
 	$("#percentage").prop("checked", true);

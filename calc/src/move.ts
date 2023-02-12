@@ -119,8 +119,7 @@ export class Move implements State.Move {
       (gen.num >= 2 && data.id === 'struggle') ||
       (gen.num <= 4 && ['futuresight', 'doomdesire'].includes(data.id));
     this.type = typelessDamage ? '???' : data.type;
-    this.category = data.category ||
-      (gen.num < 4 ? (SPECIAL.includes(data.type) ? 'Special' : 'Physical') : 'Status');
+    this.category = data.category || 'Status';
 
     const stat = this.category === 'Special' ? 'spa' : 'atk';
     if (data.self?.boosts && data.self.boosts[stat] && data.self.boosts[stat]! < 0) {

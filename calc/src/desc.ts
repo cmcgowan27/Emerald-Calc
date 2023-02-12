@@ -32,6 +32,10 @@ export interface RawDesc {
   isFlowerGiftDefender?: boolean;
   isFriendGuard?: boolean;
   isHelpingHand?: boolean;
+  isBadgeAtk?: boolean;
+  isBadgeDef?: boolean;
+  isBadgeSpeed?: boolean;
+  isBadgeSpec?: boolean;
   isCritical?: boolean;
   isLightScreen?: boolean;
   isBurned?: boolean;
@@ -871,6 +875,18 @@ function buildDescription(description: RawDesc, attacker: Pokemon, defender: Pok
   output += description.attackerName + ' ';
   if (description.isHelpingHand) {
     output += 'Helping Hand ';
+  }
+  if (description.isBadgeAtk) {
+    output += 'Badge Boost Attack ';
+  }
+  if (description.isBadgeDef) {
+    output += 'Badge Boosted Defense ';
+  }
+  if (description.isBadgeSpeed) {
+    output += 'Badge Boosted ';
+  }
+  if (description.isBadgeSpec) {
+    output += 'Badge Boosted Special ';
   }
   if (description.isFlowerGiftAttacker) {
     output += ' with an ally\'s Flower Gift ';
